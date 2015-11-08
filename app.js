@@ -14,13 +14,15 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 //connect to mongodb
 
-/*mongoose.connect('mongodb://localhost/upCompras', function(err){
+mongoose.connect('mongodb://localhost/upCompras', function(err){
     if(err){
         console.log('connection error', err);
     }else{
         console.log('connection successful');
     }
-});*/
+});
+
+/*
 mongoose.connect('mongodb://up:upcompras@ds051334.mongolab.com:51334/up', function(err){
     if(err){
         console.log('connection error', err);
@@ -28,6 +30,7 @@ mongoose.connect('mongodb://up:upcompras@ds051334.mongolab.com:51334/up', functi
         console.log('connection successful');
     }
 });
+*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

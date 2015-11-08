@@ -2,11 +2,12 @@ var mongoose = require('mongoose');
 
 var usuarioSchema = new mongoose.Schema({
     nome :String,
-    token : String,
+    id_facebook: String,
+    token_facebook : String,
     expires_in_facebook : String,
-    id_facebook : String,
-    id_push_google : String,
-    
+    refresh_token : String, 
+    token : String,
+    primeiro_login : { type: Boolean, default: false,  required: true },
 });
 
 module.exports = mongoose.model('usuario', usuarioSchema);
