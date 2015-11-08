@@ -13,7 +13,6 @@ var app = express();
 var mongoose = require('mongoose');
 var cors = require('cors');
 //connect to mongodb
-
 /*
 mongoose.connect('mongodb://localhost/upCompras', function(err){
     if(err){
