@@ -39,8 +39,6 @@ router.route('/login')
             console.error(err);
             return res.status(500).json('Desculpe, erro interno');
         }else if(usuarioEncontrado === null){
-            console.log('salvar usuario');
-
             Usuario.create(novoUsuario, function(err, usuarioCriado){
                 if(err){
                     return res.status(500).json({'success': false, 'message': 'Desculpe, usuário não pode ser salvo'});
@@ -50,22 +48,23 @@ router.route('/login')
                 }
             });
         }else{
-            console.log('will not save user');
             Usuario.findByIdAndUpdate(usuarioEncontrado._id, novoUsuario, function(err, usuarioAtualizado){
                 if(err) {
                     return res.status(500).json({'success': false, 'message': 'Descuple, erro interno'});
                 }
-                return res.status(200).json(userUpdated);
+                return res.status(200).json(usuarioAtualizado);
             });
         }
     });
     
 });
 
-router.route('/login/:id')
+router.route('/login/gcm')
     .post(function(req,res){
-        var id = req.params.id;
+        var id = req.body.id_facebook;
         var token = req.body.token;
+
+        console.log(req.body);
     
         Usuario.findOneAndUpdate({id_facebook: id}, {token: token, primeiro_login: true}, {new: true}, function(err, usuario) {
         if (err) {

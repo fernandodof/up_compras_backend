@@ -20,8 +20,8 @@ mongoose.connect('mongodb://localhost/upCompras', function(err){
     }else{
         console.log('connection successful');
     }
-});
-*/
+});*/
+
 
 mongoose.connect('mongodb://up:upcompras@ds051334.mongolab.com:51334/up', function(err){
     if(err){
