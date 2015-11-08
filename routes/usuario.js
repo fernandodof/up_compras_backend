@@ -43,7 +43,7 @@ router.route('/login')
 
             Usuario.create(novoUsuario, function(err, usuarioCriado){
                 if(err){
-                    return res.status(500).json('Desculpe, usuário não pode ser salvo');
+                    return res.status(500).json(success: false, message: 'Desculpe, usuário não pode ser salvo');
                 }
                 else{
                     return res.status(201).json(usuarioCriado);
@@ -53,7 +53,7 @@ router.route('/login')
             console.log('will not save user');
             Usuario.findByIdAndUpdate(usuarioEncontrado._id, novoUsuario, function(err, usuarioAtualizado){
                 if(err) {
-                    return res.status(500).json('Desculpe, erro interno');
+                    return res.status(500).json(success: false, message: 'Descuple, erro interno');
                 }
                 return res.status(200).json(userUpdated);
             });
@@ -67,14 +67,14 @@ router.route('/login/:id')
         var id = req.params.id;
         var token = req.body.token;
     
-        Usuario.findOneAndUpdate({id_facebook: id}, {token: token}, {new: true}, function(err, usuario) {
+        Usuario.findOneAndUpdate({id_facebook: id}, {token: token, primeiro_login: true}, {new: true}, function(err, usuario) {
         if (err) {
             console.log(err);
-            return res.status(500).json('Desculpe, erro interno');
+            return res.status(500).json(success: false, message: 'Descuple, erro interno');
         }
         
         if(usuario === null){
-            return res.status(500).json('Desculpe, usuário não pode ser salvo');
+            return res.status(500).json(success: false, message: 'Desculpe, usuario não encontrado');
         }
             
         return res.send(usuario);    
